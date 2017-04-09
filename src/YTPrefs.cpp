@@ -57,6 +57,9 @@ YTPrefs::initialize()
     QSettings settings;
     qDebug("Initializing settings");
 
+    if (!settings.contains("KodimoteIntegration"))
+        settings.setValue("KodimoteIntegration", true);
+
     if (!settings.contains("AccountIntegration"))
         settings.setValue("AccountIntegration", false);
 
@@ -133,7 +136,6 @@ YTPrefs::isAuthEnabled()
     QVariant auth = get("AccountIntegration");
     return auth.isValid() && auth.toBool();
 }
-
 void
 YTPrefs::disableAuth()
 {

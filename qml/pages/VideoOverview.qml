@@ -6,6 +6,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import harbour.ytplayer 1.0
 import org.nemomobile.notifications 1.0
+
+import org.nemomobile.dbus 2.0
 import "../common/Helpers.js" as Helpers
 import "../common/duration.js" as DJS
 import "../common"
@@ -292,6 +294,52 @@ Page {
                 onClicked: openLinkInBrowser(kYoutubeVideoUrlBase + videoId)
             }
 
+
+            MenuItem {
+                visible: YTPrefs.getBool("KodimoteIntegration")
+                //: Menu option opening YouTube video page in a web browser
+                //% "Open in browser"
+                text: qsTrId("ytplayer-action-open-in-kodimote")
+                onClicked: dbif.playKodi()
+                DBusInterface {
+                    id:dbif
+                    service: 'org.mpris.MediaPlayer2.kodimote'
+                    path: '/org/mpris/MediaPlayer2'
+                    iface: 'org.mpris.MediaPlayer2'
+
+//                    iface: 'org.mpris.MediaPlayer2.Player'
+                    function playKodi(){
+
+                        service = 'org.mpris.MediaPlayer2.kodimote'
+                        path = '/org/mpris/MediaPlayer2'
+                        iface = 'org.mpris.MediaPlayer2'
+
+                        typedCall('Raise',
+                                  [],
+                                  function(result) { openUriKodi() },
+                                  function() { launchKodi() })
+                    }
+                    property int retries: 0
+                    function openUriKodi(){
+
+                        service = 'org.mpris.MediaPlayer2.kodimote'
+                        path = '/org/mpris/MediaPlayer2'
+                        iface = 'org.mpris.MediaPlayer2.Player'
+                        typedCall('OpenUri',
+                                  { 'type': 's', 'value': kYoutubeVideoUrlBase + videoId },
+                                  function(result) { console.log('call completed with:', result) },
+                                  function() { if(retries > 4) { return; } console.log('call failed'); kodiOpenUriTimer.start(); retries +=1;})
+                    }
+
+                    function launchKodi(){
+                        YTUtils.launchKodi();
+                        kodiOpenUriTimer.start()
+
+//                        console.log(kYoutubeVideoUrlBase + videoId)
+                    }
+
+                }
+            }
             MenuItem {
                 id: channelBrowserMenuOption
                 //: menu option allowing the user to browser YouTube channel
@@ -307,7 +355,13 @@ Page {
                 }
             }
         }
-
+        Timer {
+            id: kodiOpenUriTimer
+            interval: 5000
+            onTriggered: {
+                dbif.openUriKodi()
+            }
+        }
         HeaderButton {
             id: header
             anchors.top: parent.top

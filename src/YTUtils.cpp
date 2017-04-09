@@ -36,6 +36,7 @@
 #include <QDBusObjectPath>
 #include <QDebug>
 #include <QDir>
+#include <QProcess>
 #include <sailfishapp.h>
 
 #include "config.h"
@@ -196,6 +197,13 @@ YTUtils::preventScreenBlanking(bool prevent)
     QDBusMessage msg = QDBusMessage::createMethodCall("com.nokia.mce", "/com/nokia/mce/request",
                                                       "com.nokia.mce.request", request);
     (void)systemBus.call(msg);
+}
+void
+YTUtils::launchKodi()
+{
+    QProcess *process = new QProcess(this);
+    QString file = "/usr/bin/harbour-kodimote";
+    process->startDetached(file);
 }
 
 QString
