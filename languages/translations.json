@@ -2,6 +2,13 @@
   "default" : "en_GB",
   "items" : [
     {
+      "name" : "Català",
+      "code" : "ca",
+      "authors" : [
+        "Agustí Clara"
+      ]
+    },
+    {
       "name" : "Čeština",
       "code" : "cs_CZ",
       "authors" : [
@@ -24,6 +31,20 @@
       ]
     },
     {
+      "name" : "Español",
+      "code" : "es",
+      "authors" : [
+        "Carmen Fernández B."
+      ]
+    },
+    {
+      "name" : "Français",
+      "code" : "fr_FR",
+      "authors" : [
+        "Rudy Nappée"
+      ]
+    },
+    {
       "name" : "Italiano",
       "code" : "it_IT",
       "authors" : [
@@ -35,6 +56,13 @@
       "code" : "nl_NL",
       "authors" : [
         "Heimen Stoffels"
+      ]
+    },
+    {
+      "name": "Polski",
+      "code": "pl_PL",
+      "authors": [
+        "pemekcz"
       ]
     },
     {

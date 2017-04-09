@@ -67,6 +67,21 @@ Page {
                     }
                 }
             }
+            TextSwitch {
+                id: kodimoteSwitch
+                //: Label of switch activating/deactivating Kodimote integration
+                //% "Kodimote playback"
+                text: qsTrId("ytplayer-label-kodimote-integration")
+                //: Description of switch activating/deactivating activating/deactivating Kodimote integration
+                //% "Allow YTPlayer play using Kodimote."
+                description: qsTrId("ytplayer-description-kodimote-integration")
+                automaticCheck: false
+                checked: YTPrefs.getBool("KodimoteIntegration")
+
+                onClicked: {
+                    YTPrefs.set("KodimoteIntegration", checked)
+                }
+            }
         }
 
         Grid {

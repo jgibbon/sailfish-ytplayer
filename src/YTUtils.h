@@ -44,6 +44,7 @@ public:
     explicit YTUtils(QObject *parent = 0);
 
     Q_INVOKABLE void preventScreenBlanking(bool prevent);
+    Q_INVOKABLE void launchKodi();
     Q_INVOKABLE QString getLicense(QString file);
 
     static QString getRegionCode();

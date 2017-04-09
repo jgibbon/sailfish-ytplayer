@@ -4,7 +4,7 @@
 
 TARGET = harbour-ytplayer
 
-CONFIG += sailfishapp sailfishapp_no_deploy_qml
+CONFIG += sailfishapp sailfishapp_no_deploy_qml c++11
 QT += dbus sql concurrent
 
 SOURCES += \
@@ -78,7 +78,7 @@ CLIENT_ID_FILE = $$top_srcdir/youtube-client-id.json
 configh.input = KEY_FILE
 configh.output = $$top_builddir/config.h
 configh.commands = \
-    $$top_srcdir/scripts/generate-config-h.py \
+    python $$top_srcdir/scripts/generate-config-h.py \
             --keyfile=$$KEY_FILE \
             --idfile=$$CLIENT_ID_FILE \
             --outfile=$$top_builddir/config.h

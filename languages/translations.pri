@@ -3,11 +3,15 @@
 # found in the LICENSE.YTPlayer file.
 
 TRANSLATIONS += \
+        languages/ca.ts \
         languages/cs_CZ.ts \
         languages/de.ts \
         languages/en_GB.ts \
+        languages/es.ts \
+        languages/fr_FR.ts \
         languages/it_IT.ts \
         languages/nl_NL.ts \
+        languages/pl_PL.ts \
         languages/ru_RU.ts \
         languages/sv.ts
 
@@ -16,7 +20,7 @@ OTHER_FILES += languages/translations.json
 updateqm.input = TRANSLATIONS
 updateqm.output = $$top_builddir/languages/${QMAKE_FILE_BASE}.qm
 updateqm.commands = \
-	lrelease -idbased ${QMAKE_FILE_IN} \
+        lrelease -idbased ${QMAKE_FILE_IN} \
         -qm $$top_builddir/languages/${QMAKE_FILE_BASE}.qm
 updateqm.CONFIG += no_link
 QMAKE_EXTRA_COMPILERS += updateqm
