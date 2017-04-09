@@ -1,7 +1,15 @@
-YTPlayer
+YTPlayer [UNOFFICIAL KODIMOTE MONKEYPATCH]
 =======
 
 YTPlayer is an unofficial YouTube client for SailfishOS.
+
+Find the original Version on https://github.com/tworaz/sailfish-ytplayer
+
+This unofficial fork of the unofficial client changes the following things:
+ - adds a quick method to send the Video to Kodimote via PulleyMenu. Kodimote has to be installed.
+ - has an updated YouTubeDL library.
+ - is basically untested and for my own use ;)
+
 
 <div class="row">
 <img width="240px" src="https://raw.githubusercontent.com/tworaz/sailfish-ytplayer/master/artwork/screenshots/20150915210645.jpg" />
@@ -14,7 +22,7 @@ Getting the source
 
 Since YTPlayer uses some extra 3rd party components shipped in git submodules it needs to be cloned with --recursive option. Ex:
 
-- git clone --recursive https://github.com/tworaz/sailfish-ytplayer.git
+- git clone --recursive https://github.com/jgibbon/sailfish-ytplayer.git
 
 Build Prequisites
 -----------------
